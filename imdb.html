@@ -66,8 +66,9 @@
                 <p>The dataset of 25,000 movies reviews from IMDB, labeled by sentiment (positive/negative). Reviews have been preprocessed, 
                   and each review is encoded as a sequence of word indexes (integers). For convenience, words are indexed by overall frequency in 
                   the dataset, so that for instance the integer "3" encodes the 3rd most frequent word in the data. This allows for quick filtering 
-                  operations such as: "only consider the top 10,000 most common words, but eliminate the top 20 most common words".</p>
-                <p>For example, below is a positive review from dataset (the top 20 most common words are replaced by question mark):</p>
+                  operations such as: "only consider the top 10,000 most common words, but eliminate the top 10 most common words". In this project
+                  we set number of words to 2500, which means the model has 2500 features.</p>
+                <p>For example, below is a positive review from dataset (the top 10 most common words are replaced by question mark):</p>
                 <p><b>? portrays ? day ? day ? reality ? ? on ? ? ? ? old west outstanding acting by both ? actors ? doesn't even feel like ? 
                    movie you feel like you're there animal ? should ? many scenes are obviously not just realistic they are real.</b></p>
                 <h3><b>How it works</b></h3>
@@ -103,7 +104,7 @@
                 <p>From the ROC curve plots, those three models’ performances are pretty good on predicting test dataset and it’s hard to identify 
                   which one is the best model only according to AUC values. We will discuss more criterions when selecting a suitable model for a 
                   project in <a href="./twbank.html"> Taiwan Bankruptcy</a>, for example, time consuming, random samppling error.</p>
-                <h3><b>5 words of reviews</b></h3>
+                <h3><b>Top 5 words of reviews</b></h3>
                 <p>Even thought performances are similar, the importance of words for each model to classify sentiments are slightly different.</p>
                 <h4>Ridge</h4>
                 <p><b>From positive reviews:</b></p>
@@ -120,6 +121,16 @@
                 <p>prince refreshing captures wonderfully noir</p>
                 <p><b>From negative reviews:</b></p>
                 <p>poorly lousy worst disappointment badly</p>
+                <h3><b>Summary</b></h3>
+                <p>As for now, we can not decide which algorithm performs better than the other two only considering ROC curve, their AUC values all 
+                   look very good in training and testing datasets. However, when you consider model complexicy and time consuming of running code,
+                   Ridge regression usually takes less time but more complexicy, Lasso regression takes longer and less model complexicy, Elastic-net
+                   regression are between these two. In the <a href="./twbank.html" title="Tai wan bankruptcy">Taiwan Bankruptcy project</a>, we will
+                   go deep into complexicy trade-off and discuss in what kind of situation, time matters more than model complexity or the opposite. 
+                   But we can know that Logistic Regression model is very suitable here to predict sentiment of movie reviews of IMDb
+                   The top 5 words show the importances of features, when model predicts a review, those words will have more contribution to 
+                   classify positive or negative.</p>
+
              </div>
             </article> 
         </div>
@@ -131,7 +142,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <a href="https://github.com/Yangxiao2498/IMDbSentimentClassfier" title="IMDb project github code">Detail code please check out my github repo</a>
+        <p>Detail code please check out my github repo. <a href="https://github.com/Yangxiao2498/IMDbSentimentClassfier" title="IMDb project github code">click here</a></p>
       </div>
     </div>
   </div>
