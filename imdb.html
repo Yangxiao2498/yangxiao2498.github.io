@@ -59,15 +59,67 @@
             <h1 class="h2">IMDb Sentiment ML Model Selection</h1>
           </div>
             <article>
-             <p>This is the project from my class to predict a review is positive or negative based on dataset from IMDb. I am going to show the process that 
-              how we select the best binomial logistic regression model among Ridge, Lasso and Elastic-net.</p>
+             <p>This is the project from my class to predict whether a review from IMDb is positive or negative using ML logistic regression, 
+                and select the best algorithm based on AUC among Ridge, Lasso and Elastic-net.</p>
              <div>
-                <p><b>Dataset summary</b></p>
-                <p> We have a dataset of 25,000 movies reviews from IMDB, labeled by sentiment (positive/negative). Reviews have been preprocessed, 
-                   and each review is encoded as a sequence of word indexes (integers). For convenience, words are indexed by overall frequency in
-                    the dataset, so that for instance the integer "3" encodes the 3rd most frequent word in the data. This allows for quick 
-                    filtering operations such as: "only consider the top 10,000 most common words, but eliminate the top 20 most common words".
-                </p>
+                <h3><b>Dataset summary</b></h3>
+                <p>The dataset of 25,000 movies reviews from IMDB, labeled by sentiment (positive/negative). Reviews have been preprocessed, 
+                  and each review is encoded as a sequence of word indexes (integers). For convenience, words are indexed by overall frequency in 
+                  the dataset, so that for instance the integer "3" encodes the 3rd most frequent word in the data. This allows for quick filtering 
+                  operations such as: "only consider the top 10,000 most common words, but eliminate the top 20 most common words".</p>
+                <p>For example, below is a positive review from dataset (the top 20 most common words are replaced by question mark):</p>
+                <p><b>? portrays ? day ? day ? reality ? ? on ? ? ? ? old west outstanding acting by both ? actors ? doesn't even feel like ? 
+                   movie you feel like you're there animal ? should ? many scenes are obviously not just realistic they are real.</b></p>
+                <h3><b>How it works</b></h3>
+                <blockquote>
+                  <p>Logistic Regression is a Machine Learning algorithm which is used for the classification problems, it is a predictive analysis algorithm and based on the concept of probability.
+                    We can call a Logistic Regression a Linear Regression model, but the Logistic Regression uses a more complex cost function.
+                  </p>
+                    <a class="pull-right" href="https://towardsdatascience.com/introduction-to-logistic-regression-66248243c148">Introduction to Logistic Regression</a>
+                </blockquote>
+                <p>Three different algorithms in this project have different cost functions. I will use histogram plot that created by Ridge 
+                   algorithm to illustrate how logistic regression works to do classification job.</p>
+                <div class="article-img" >
+                  <img src="./Projects/imdb/hist.jpg" class="center" alt="" width="800" height="200">
+                  <figcaption>Stacked Histogram Plot</figcaption>
+                </div>
+                <h2> </h2>
+                <p>The output of the Logistic Regression is between 0 and 1. But as the plot shown above, the values in X axis are not in that 
+                  range, because Logistic Regression will do one more step which is exponential transformation to transform the value into range 
+                  0,1. (Detail formula). The histogram plot divides review into three groups in different colors and is divided by 0. Say the 
+                  threshold of Logistic Regression is 0.5, but it’s not always is 0.5, it depends on if the dataset is balance or not. If the 
+                  value of a review is larger than 0, after exponential transformation, the Logistic Regression output will larger than 0.5, we 
+                  classify this review as positive, on the contrary, if the value of a review is less than 0, the Logistic Regression output will 
+                  less than 0.5, we classify this review as negative. The histogram around value 0, which also means Logistic Regression output is 
+                  near 0.5, indicates those review is hard for computer to classify.</p>
+                <h3><b>Model Selection</b></h3>
+                <p>We use 10-fold cross-validation to tune the best parameter of each model and select one model with the best performance based 
+                   on AUC value.</p>
+                <div class="col-xs-12" >
+                    <img src="./Projects/imdb/Rocs.png" class="article-img" alt="" width="800" height="200">
+                    <figcaption>ROC Curves Plot</figcaption>
+                </div>
+                
+                <p>From the ROC curve plots, those three models’ performances are pretty good on predicting test dataset and it’s hard to identify 
+                  which one is the best model only according to AUC values. We will discuss more criterions when selecting a suitable model for a 
+                  project in <a href="./twbank.html"> Taiwan Bankruptcy</a>, for example, time consuming, random samppling error.</p>
+                <h3><b>5 words of reviews</b></h3>
+                <p>Even thought performances are similar, the importance of words for each model to classify sentiments are slightly different.</p>
+                <h4>Ridge</h4>
+                <p><b>From positive reviews:</b></p>
+                <p>gem noir captures wonderfully refreshing</p>
+                <p><b>From negative reviews:</b></p>
+                <p>worst unfunny disappointment lousy waste</p>
+                <h4>Lasso</h4>
+                <p><b>From positive reviews:</b></p>
+                <p>7 refreshing wonderfully captures noir</p>
+                <p><b>From negative reviews:</b></p>
+                <p>worst waste poorly badly lousy</p>
+                <h4>Elastic-net</h4>
+                <p><b>From positive reviews:</b></p>
+                <p>prince refreshing captures wonderfully noir</p>
+                <p><b>From negative reviews:</b></p>
+                <p>poorly lousy worst disappointment badly</p>
              </div>
             </article> 
         </div>
