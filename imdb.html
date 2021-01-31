@@ -53,7 +53,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <img src="./assets/images/imdb_head.jpg" class="img-responsive" alt="" style="width:1500px;height:200px;">
+        <img src="./assets/images/imdb_head.jpg" class="center_" alt="" width="1150" height="200">
         <div class="card-container">
           <div class="text-center">
             <h1 class="h2">IMDb Sentiment ML Model Selection</h1>
@@ -76,7 +76,7 @@
                   <p>Logistic Regression is a Machine Learning algorithm which is used for the classification problems, it is a predictive analysis algorithm and based on the concept of probability.
                     We can call a Logistic Regression a Linear Regression model, but the Logistic Regression uses a more complex cost function.
                   </p>
-                    <a class="pull-right" href="https://towardsdatascience.com/introduction-to-logistic-regression-66248243c148">Introduction to Logistic Regression</a>
+                    <a class="pull-right" href="https://towardsdatascience.com/introduction-to-logistic-regression-66248243c148"><u>Introduction to Logistic Regression</u></a>
                 </blockquote>
                 <p>Three different algorithms in this project have different cost functions. I will use histogram plot that created by Ridge 
                    algorithm to illustrate how logistic regression works to do classification job.</p>
@@ -103,7 +103,7 @@
                 
                 <p>From the ROC curve plots, those three models’ performances are pretty good on predicting test dataset and it’s hard to identify 
                   which one is the best model only according to AUC values. We will discuss more criterions when selecting a suitable model for a 
-                  project in <a href="./twbank.html"> Taiwan Bankruptcy</a>, for example, time consuming, random sampling error.</p>
+                  project in <a href="./twbank.html" title="Tai Wan bankruptcy analysis"><u>Taiwan Bankruptcy</u></a>, for example, time consuming, random sampling error.</p>
                 <h3><b>Top 5 words of reviews</b></h3>
                 <p>Even thought performances are similar, the importance of words for each model to classify sentiments are slightly different.</p>
                 <h4>Ridge</h4>
@@ -125,7 +125,7 @@
                 <p>As for now, we can not decide which algorithm performs better than the other two only considering ROC curve, their AUC values all 
                    look very good in training and testing datasets. However, when you consider model complexicy and time consuming of running code,
                    Ridge regression usually takes less time but more complexicy, Lasso regression takes longer and less model complexicy, Elastic-net
-                   regression are between these two. In the <a href="./twbank.html" title="Tai wan bankruptcy">Taiwan Bankruptcy project</a>, we will
+                   regression are between these two. In the <a href="./twbank.html" title="Tai wan bankruptcy"><u>Taiwan Bankruptcy project</u></a>, we will
                    go deep into complexicy trade-off and discuss in what kind of situation, time matters more than model complexity or the opposite. 
                    But we can know that Logistic Regression model is very suitable here to predict sentiment of movie reviews of IMDb
                    The top 5 words show the importances of features, when model predicts a review, those words will have more contribution to 
@@ -142,7 +142,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <p>Detail code please check out my github repo. <a href="https://github.com/Yangxiao2498/IMDbSentimentClassfier" title="IMDb project github code">Click here</a></p>
+        <p>Detail code please check out my github repo. <a href="https://github.com/Yangxiao2498/IMDbSentimentClassfier" title="IMDb project github code"><u>Click here</u></a></p>
       </div>
     </div>
   </div>
