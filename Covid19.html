@@ -7,7 +7,7 @@
   <meta content="width=device-width,initial-scale=1" name="viewport">
   <meta content="description" name="description">
   <meta name="google" content="notranslate" />
-  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+  <meta content="Covid 19 county simulator" name="Yang Xiao">
 
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
@@ -56,39 +56,82 @@
         <img src="./assets/images/imdb_head.jpg" class="center_" alt="" width="1150" height="200">
         <div class="card-container">
           <div class="text-center">
-            <h1 class="h2">001 : Fringilla sit amet</h1>
+            <h1 class="h2">Covid19 Simulator Report </h1>
           </div>
-          <p>Nulla facilisi. Vivamus vestibulum, elit in scelerisque ultricies, nisl nunc pulvinar ligula, id sodales arcu sapien in nisi. Quisque libero enim, mattis non augue posuere, venenatis dapibus urna.</p>
-
-          <blockquote>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</p>
-            <small class="pull-right">Irina Martin</small>
-          </blockquote>
+            <article>
+             <p>This is the first real world project I attended in the financial area. My internship in Prospect 33 began in the end of May 2020 
+                when the Covid19 has killed so many people in the world, and it’s becoming a big concern in America. Doing something meaningful to 
+                prevent people from virus and applying what I learned from school driven me into this amazing team. </p>
+             <div>
+               <h3><b>Dataset Summary</b></h3>
+               <p>We have a cron job script to pull data daily for every county in the US from the Johns Hopkins GitHub site. It contains number 
+                  of total deaths, total confirmed cases, new deaths, new confirmed cases, etc. But we could not find a reliable data source has 
+                  daily recovery data, so we decide to make up the recovery data from the data we have based on some assumptions. </p>
+               <p>Here is the example:</p>
+               <div class="col-xs-12" >
+                  <img src="./Projects/covid19/data.jpg" class="center_" alt="" width="700" height="400">
+                  <figcaption>Sample data</figcaption>
+               </div>
+               <h3><b>Model Assumptions</b></h3>
+               <ul>
+                 <li>The data from JHU is reliable and correct.</li>
+                 <li>Only analyze the county whose total confirmed cases >=250.</li>
+                 <li>The model output is estimated infected cases, which equal to: total confirmed – total deaths – total recovery cases.</li>
+                 <li>80% of new cases will be either dead or recovered in two weeks, the rest 20% will be either dead or recovered in the next 
+                     week (the third week).</li>
+                 <li>Infected case depends on last 7 days’ infected number. </li>
+                 <li>Use 7-days moving average to calculate beta and gamma for SIR model and Rt.</li>
+               </ul>
+               <h3><b>Model Selection</b></h3>
+               <p>We assume infected case depends on last 7 days’ data, so we want to build a regression model to predict it, after model 
+                  validation, we finally choose Ridge regression to fit the data. And then do prediction for 2-weeks period, after that, generate 
+                  beta and gamma at the end of prediction and plug in SIR model to simulate for 100 days.</p>
+                <p>Reference:<a href="https://www.nature.com/articles/s41598-020-78739-8" title="susceptible-infectious-removed (SIR) model"><u>SIR Model</u></a>,
+                   <a href="http://gibbs1.ee.nthu.edu.tw/A_TIME_DEPENDENT_SIR_MODEL_FOR_COVID_19.PDF"><u>Time_Dependent Paper</u></a></p>
+                <h3>How to Use Our Tool: </h3>
+                <a href="https://www.covidcountysim.org/" title="Covid19 county simulator"><u>Click here to our website directly--></u></a>
+                <h4><b>Daily Updated Info</b></h4>
+                <div class="col-xs-12" >
+                  <img src="./Projects/covid19/daily.png" class="center_" alt="" width="800" height="120">
+                  <figcaption>Basic Daily Information</figcaption>
+                </div>
+                <p>We will update the common data daily like cumulative reported cases, cumulative deaths, estimated Rt and case fatality rate. 
+                   You can select any county of America in the drop box menu only if the number of total confirmed cases of the county is larger 
+                   than 250. Also, you can change case fatality rate to see how the projection and simulation will change.</p>
+                <h4><b>Intervention</b></h4>
+                <div class="col-xs-12" >
+                  <img src="./Projects/covid19/intervention.png" class="center_" alt="" width="800" height="140">
+                  <figcaption>Intervention Adjusted Bar</figcaption>
+                </div>
+                <p>In the bottom of our tool, you can set intervention date to after the prediction period ends, then use the slider to increase 
+                   or decrease Rt, which is the value you are targeting based on social distancing, mask wearing, etc. There are upper and lower 
+                    bounds set according to the county so that the Rt remains in a realistic range for that county’s situation. When Rt larger than 1, 
+                    infected cases will go up, and when Rt less than 1, infected cases will decrease.</p>
+                <h4><b>Projection and Simulation</b></h4>
+                <div class="col-xs-12" >
+                  <img src="./Projects/covid19/projection.png" class="center_" alt="" width="800" height="240">
+                  <figcaption>Projectin and Simulation Plot</figcaption>
+                </div>
+                <p>When you set up all intervention parameters or leave them by default. You will see the projection and simulation plot like the 
+                   picture above. You may notice the orange line in the middle, that’s 2-weeks projection, the light blue line before that is 
+                   estimated infected cases, and the deep blue line after is SIR model simulation output. </p>
+             </div>
+            </article> 
         </div>
       </div>
-
-      
-      
-      <div class="col-md-8 col-md-offset-2 section-container-spacer">
-        <div class="row">
-          <div class="col-xs-12 col-md-6">
-            <img src="./assets/images/work001-02.jpg" class="img-responsive" alt="">
-            <p>Menphis skyline</p>
-          </div>
-          <div class="col-xs-12 col-md-6">
-            <img src="./assets/images/work001-03.jpg" class="img-responsive" alt="">
-            <p>Menphis skyline</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xs-12">
-        <img src="./assets/images/work001-04.jpg" class="img-responsive" alt="">
-      </div>
-
     </div>
   </div>
 </div>
+
+<footer class="footer-container text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p>I can not share detail code without company authortity, but <a href="https://www.covidcountysim.org/" title="tootl website"><u>please go to our website and play with it!</u></a></p>
+      </div>
+    </div>
+  </div>
+</footer>
 
 
 <footer class="footer-container text-center">
