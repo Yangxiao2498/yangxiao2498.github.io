@@ -109,7 +109,7 @@
                    has the worst performance, but the time it consumed is much longer than Ridge and Lasso whose performances are much better. 
                    Secondly, given the first three algorithms have the similar performance, if we consider time consuming, we may choose Ridge 
                    regression for our project.</p>
-                <p>Now, we take model complexity to our consideration.</p>
+                <p>Now, we take model complexity into our consideration.</p>
                 <div class="col-xs-12" >
                   <img src="./Projects/tw/importance.jpg" class="center_" alt="" width="850" height="600">
                   <figcaption>Coefficients Bar Plots</figcaption>
@@ -117,14 +117,17 @@
                 <p>We do not consider Random Forest for now, because its bad performance on test set. Each feature in this bar plot, if bar is 
                    above horizontal line, it means this feature is positively related to more likely to classify the company to be bankrupted. 
                    And the length of a bar means the importance level of the feature to contribute to classification, or coefficient of feature.</p>
-                <h3><b>Summary</b></h3>
+                
+                <h3><b>Summary and Variable Selection</b></h3>
                 <p>All features of Ridge regression have coefficients and of Lasso and Elastic-net, only a few features have coefficients, which 
                    makes the model simpler. When we build a model for a project, we always want a simple model whose performance is good. And the 
                    time consuming of Lasso is less than Elastic-net. </p>
                 <p>On the other hand, time is important also, but this project is not real-time stock price prediction in which the timing issue 
                    is much more important than model complexity if models have similar performance. </p>
                 <p>In the end, we will decide to use Lasso as our optimal model to predict Tai Wan Bankruptcy, so we only need to focus on few 
-                   company’s financial features.The most positive feature is Liability/Total Asset (+) and the most negative feature is EPS-Net 
+                   company’s financial features.That's also the results of variable selection, those few features that have relative large absolute values 
+                   will be considered in our final predict model by which we reach the goal to reduce the model complexity and variable selection
+                   .The most positive feature is Liability/Total Asset (+) and the most negative feature is EPS-Net 
                    Income (-). For a company, as its liability/total asset is large, it more likely to file bankruptcy and if it’s EPS-net income 
                    is large, it less likely to file bankruptcy.</p>
               </div>
