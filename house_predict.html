@@ -49,47 +49,180 @@
     </div>
   </nav>
 </header>
-<div class="section-container">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <img src="./assets/images/imdb_head.jpg" class="center_" alt="" width="1150" height="200">
-        <div class="card-container">
-          <div class="text-center">
-            <h1 class="h2">001 : Fringilla sit amet</h1>
-          </div>
-          <p>Nulla facilisi. Vivamus vestibulum, elit in scelerisque ultricies, nisl nunc pulvinar ligula, id sodales arcu sapien in nisi. Quisque libero enim, mattis non augue posuere, venenatis dapibus urna.</p>
-
-          <blockquote>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</p>
-            <small class="pull-right">Irina Martin</small>
-          </blockquote>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <img src="./assets/images/imdb_head.jpg" class="center_" alt="" width="1150" height="200">
+      <div class="card-container">
+        <div class="text-center">
+          <h1 class="h2">Real Estate Price Prediction</h1>
         </div>
-      </div>
-
-      
-      
-      <div class="col-md-8 col-md-offset-2 section-container-spacer">
-        <div class="row">
-          <div class="col-xs-12 col-md-6">
-            <img src="./assets/images/work001-02.jpg" class="img-responsive" alt="">
-            <p>Menphis skyline</p>
+        <article>
+          <p>This project is from self-learning experience. The task is to use California census data to build a model of housing prices in the state. I will do the data visualization and variable selection, and then model selection among several ML models based on their performances.</p>
+          <p><strong>Dataset Summary</strong></p>
+          <p>The data includes metrics such as population, median income, location, and median housing price for each block group in California. There are 20640 instances in the datasets and 10 attributes including both numerical variables and categorical variables.</p>
+          <p>Links to data source:</p>
+          <p><a href="https://raw.githubusercontent.com/ageron/handson-ml2/master/datasets/housing/housing.tgz">https://raw.githubusercontent.com/ageron/handson-ml2/master/datasets/housing/housing.tgz</a></p>
+          <p>Here is the sample picture of the datasets that I will use in this project:</p>
+          <div class="col-xs-12" >
+            <img src="./Projects/house_price/sample_date.png" class="center_" alt="" width="900" height="250">
+            <figcaption>Sample data structure</figcaption>
           </div>
-          <div class="col-xs-12 col-md-6">
-            <img src="./assets/images/work001-03.jpg" class="img-responsive" alt="">
-            <p>Menphis skyline</p>
+          <p><strong>Data Visualization</strong></p>
+          <p>Since the data contains location information and also population, so the plot that demonstrates the relationship among location, population density and housing price will be nice.</p>
+          <div class="col-xs-12" >
+            <img src="./Projects/house_price/data_visualization.jpg" class="center_" alt="" width="600" height="300">
+            <figcaption>Data Visualization</figcaption>
           </div>
-        </div>
+          <p>As the plot shown above, red dots are expensive and blue ones are cheap. Larger circles indicates that the lager population in that area. From the plot, we can know the housing price is related to location and population density.</p>
+          <p>&nbsp;</p>
+          <p><strong>Variables Correlation and Data Cleaning</strong></p>
+          <p>For variable selection, the correlation map will be my first consideration to see the relationship between dependent variable and each independent variable.</p>
+          <div class="article-img" >
+            <img src="./Projects/house_price/corr.jpg" class="center" alt="" width="800" height="200">
+            <figcaption>Correlation Coefficients</figcaption>
+          </div>
+          <p>Then select the features that have large absolute correlation coefficients to draw the matrix plot.</p>
+          <div class="article-img" >
+            <img src="./Projects/house_price/matrix.jpg" class="center" alt="" width="800" height="200">
+            <figcaption>Stacked Histogram Plot</figcaption>
+          </div>
+          <p>Now, we have some basic sense of the relationship between dependent variable and numerical variables. After imputing the missing data, we then did transformation. For categorical variables, we used one-hot encoding method to transform the categorical variables which is ocean_proximity in the case and used standardized normalization to transform the numerical data. In the end, the data is ready to train the ML models.</p>
+          <p>&nbsp;</p>
+          <p><strong>Model Training and Selection</strong></p>
+          <p>After data preprocessing, we trained three models which are linear regression model, decision tree model and random forest model using sklearn package in Python. We used 10-fold Cross-Validation and RMSE, root mean squared error, to measure the model performance. And we have the output table as shown below:</p>
+          <table width="641">
+          <tbody>
+          <tr>
+          <td width="112">
+          <p>&nbsp;</p>
+          </td>
+          <td colspan="3" width="267">
+          <p>Training sets</p>
+          </td>
+          <td colspan="3" width="261">
+          <p>Testing sets</p>
+          </td>
+          </tr>
+          <tr>
+          <td width="112">
+          <p>&nbsp;</p>
+          </td>
+          <td width="56">
+          <p>RMSE</p>
+          </td>
+          <td width="116">
+          <p>CV scores mean</p>
+          </td>
+          <td width="95">
+          <p>CV score std</p>
+          </td>
+          <td width="56">
+          <p>RMSE</p>
+          </td>
+          <td width="110">
+          <p>CV scores mean</p>
+          </td>
+          <td width="95">
+          <p>CV score std</p>
+          </td>
+          </tr>
+          <tr>
+          <td width="112">
+          <p>Linear reg</p>
+          </td>
+          <td width="56">
+          <p>69050</p>
+          </td>
+          <td width="116">
+          <p>69223</p>
+          </td>
+          <td width="95">
+          <p>2657</p>
+          </td>
+          <td width="56">
+          <p>67352</p>
+          </td>
+          <td width="110">
+          <p>67630</p>
+          </td>
+          <td width="95">
+          <p>2568</p>
+          </td>
+          </tr>
+          <tr>
+          <td width="112">
+          <p>Decision Tree</p>
+          </td>
+          <td width="56">
+          <p>0</p>
+          </td>
+          <td width="116">
+          <p>69927</p>
+          </td>
+          <td width="95">
+          <p>2690</p>
+          </td>
+          <td width="56">
+          <p>74400</p>
+          </td>
+          <td width="110">
+          <p>73493</p>
+          </td>
+          <td width="95">
+          <p>5311</p>
+          </td>
+          </tr>
+          <tr>
+          <td width="112">
+          <p>Random Forest</p>
+          </td>
+          <td width="56">
+          <p>18307</p>
+          </td>
+          <td width="116">
+          <p>49482</p>
+          </td>
+          <td width="95">
+          <p>1859</p>
+          </td>
+          <td width="56">
+          <p>53983</p>
+          </td>
+          <td width="110">
+          <p>53950</p>
+          </td>
+          <td width="95">
+          <p>2425</p>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+          <p>We started from the training datasets. In the training datasets, Decision tree model has the smallest RMSE because the nature of decision tree that usually has overfitting problem and will lead to higher variance in testing datasets. That&rsquo;s why we also used CV scores to measure the performance. As we can see in the table under training sets and cv scores, decision tree has the worse score. Let&rsquo;s look at linear model and random forest model. Random forest is nothing but many decision trees on random subset and then averaging out their predictions. In this case, random forest has smaller RMSE than linear model, and has smaller CV scores mean. From training sets performance test, we think random forest is the best model among them. Then, we also need to check the testing set. There is no surprise that decision tree has the highest RMSE because of overfitting problem, and random forest model is the best model as it is in training set.</p>
+          <p><strong>Importance of variables</strong></p>
+          <p>Once we tuned our best models, we can check the importance of all independent variables.</p>
+          <div class="article-img" >
+            <img src="./Projects/house_price/importance.jpg" class="center" alt="" width="800" height="200">
+            <figcaption>Stacked Histogram Plot</figcaption>
+          </div>
+          <p>As we can see, the median income has the largest contribution to house price, and then followed by house location. For example, median income increases by 1 unit, the house price will increase by 0.48 unit. And number of households seems less useful.</p>
+          <p><strong>Summary</strong></p>
+          <p>By using Python script, we fetched data and cleaned the data to build three ML models to predict median house price in California. We tuned the random forest model is the best one based on RMSE and 10-fold cross-validation score. In the end, we found out that median income is the most important variable to determine the house price. In the further working, I may try to use the population density instead of population, and total rooms per person instead of total rooms and household columns to see if it will make any difference on the results.</p>
+        </article>       
       </div>
-
-      <div class="col-xs-12">
-        <img src="./assets/images/work001-04.jpg" class="img-responsive" alt="">
-      </div>
-
     </div>
   </div>
 </div>
-
+</div>
+<footer class="footer-container text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p>Detail code please check out my github repo. <a href="https://github.com/Yangxiao2498/California_house_price_prediction" title="California_house_price_prediction project github code"><u>Click here</u></a></p>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <footer class="footer-container text-center">
   <div class="container">
