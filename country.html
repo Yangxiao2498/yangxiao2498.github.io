@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Country features analisis" name="Yang xiao">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  <link href="./assets/YX.png" rel="icon">
+
+  <title>What to Make a Country Great</title>  
+
+<link href="./main.d8e0d294.css" rel="stylesheet"></head>
+
+<body class="">
+<div id="site-border-left"></div>
+<div id="site-border-right"></div>
+<div id="site-border-top"></div>
+<div id="site-border-bottom"></div>
+<!-- Add your content of header -->
+<div class="background-color-layer" style="background-image: url('assets/images/workbg.jpg')"
+></div>
+<header>
+  <nav class="navbar  navbar-fixed-top navbar-default">
+    <div class="container">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav ">
+          <li><a href="./index.html" title="">01 : Home</a></li>
+          <li><a href="./about.html" title="">02 : About me</a></li>
+          <li><a href="./projects.html" title="">03 : Projects</a></li>
+          <li><a href="./food.html" title="">04 : Recipe_food</a></li>
+        </ul>
+
+
+      </div> 
+    </div>
+  </nav>
+</header>
+<div class="section-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <img src="./assets/images/imdb_head.jpg" class="center_" alt="" width="1150" height="200">
+        <div class="card-container">
+          <div class="text-center">
+            <h1 class="h2">WHAT MAKES A COUNTRY GREAT </h1>
+          </div>
+            <article>
+              <p>This is a group project ,finished by SAS, that aims to find out what attribute that makes a country great. We will use PCA to do dimensional
+                reduction and FA technique to score each country, then draw conclustion. In the meantime, we also applied clustering to 
+                all the country. My teammates are Bingjie Shen, Haiqiong Li and Waishing Wong(in alphabetical order)</p>
+              <p>Data is from  <a href="https://data.worldbank.org/country">https://data.worldbank.org/country</a>,and you can access the raw data in my github repo.</p>
+              <p>1.Introduction</p>
+              <p>2.Data collection and pretreatment</p>
+              <p>3.PCA</p>
+              <p>&nbsp;&nbsp;&nbsp; 3.1 Objective and method introduction</p>
+              <p>&nbsp;&nbsp;&nbsp; 3.2 Result and interpretation</p>
+              <p>&nbsp;&nbsp;&nbsp; 3.3 Summary</p>
+              <p>4.Multivariate regression</p>
+              <p>4.1 Objective and method introduction</p>
+              <p>&nbsp;&nbsp; &nbsp;4.2 Result and interpretation</p>
+              <p>&nbsp;&nbsp;&nbsp; 4.3 Summary</p>
+              <p>5.Cluster</p>
+              <p>&nbsp;&nbsp;&nbsp; 5.1 Objective and method introduction</p>
+              <p>&nbsp;&nbsp;&nbsp; 5.2 Result and interpretation</p>
+              <p>&nbsp;&nbsp;&nbsp; 5.3 Summary</p>
+              <p>6.FA and ranking</p>
+              <p>&nbsp;&nbsp;&nbsp; 6.1 Objective and method introduction</p>
+              <p>&nbsp;&nbsp;&nbsp; 6.2 Result and interpretation</p>
+              <p>&nbsp;&nbsp;&nbsp; 6.3 Summary</p>
+              <p>7.Conclusion</p>
+              <p>8.Reference</p>
+              <p>&nbsp;</p>
+              <p><b>1.Introduction</b></p>
+              <p>Our project------What makes a country great is inspired by someone who is keep saying MAGG, we want to explore the relationship that between national variables and how it simply contributes to classify counties and to make a country better than others. Our project will be five parts:</p>
+              <ul>
+              <li>PCA method to get the PCs and, also reduce dimension</li>
+              <li>Multivariate PCA regression and hypothesis test</li>
+              <li>Cluster</li>
+              <li>FA and score ranking</li>
+              <li>Conclusion and limitation</li>
+              </ul>
+              <p><b>2.Data collection and pretreatment</b></p>
+              <p>Our data is collected from <a href="https://www.worldbank.org/">https://www.worldbank.org/</a>. We deleted some countries out of our list since they have a lot of missing data. And make up few missing data by filling with mean value. Because national data is collected under different unit, before doing PCA, we standardize all the variables so that they are under the same unit. The raw data which contain 44 variables can be reached from attachment, also the data index.</p>
+              <p>&nbsp;</p>
+              <p><b>3.PCA</b></p>
+              <p><b>3.1 Objective and method introduction</b></p>
+              <p><strong>3.1.1 Objective</strong></p>
+              <p>By applying PCA method, variable dimension will be reduced, and we will decide the number of PCs need to be retained to explain the most of information of raw data. Also, how dose each variable contributes to PCs.</p>
+              <p><strong>3.1.2 method introduction</strong></p>
+              <p>PCA is a dimensionality reduction technique. It is a method that groups data into principle components (PC) based on variances, where PC1 has the highest variance along an axes, PC 2 has the second highest...etc. Each PC is a linear combination of the variables, such as PC1 = A*x1 + B*x2 +.... C*x43.</p>
+              <p>PCA is usually used for few functionalities. First, it is used for visualization. PCA allows for visualizations of data relationships in high dimensional space, such as plotting PC1 vs. PC2. For example, clusters in a PC1 vs. PC2 graph are likely similar data points. Alternatively, we may see how different the data are given the distance among them in a PC1 vs. PC2 graph. (Recall that axes are ranked in order of % variance explained. Hence, the differences along PC1 are greater than the differences along PC2.)</p>
+              <p>&nbsp;Second, it is used to assist a regression or a classification procedure. If a data has many variables, it may cause researchers to over-fit if he does not apply techniques such as regularizations or dimensionality reduction. In PCA, each component is independent of one another, thus eliminating the possibility of over-fitting by including correlated variables. In this report, the objective of PCA is to reduce the dimensionality for variables x3 to x43, get an output of PCs to regress against x44(Urban population growth).</p>
+              <p><strong>3.1.3 PCA assumptions &amp; limitations</strong></p>
+              <ul>
+              <li>The variables must be continuous</li>
+              <li>There need to be a linear relationship among all variables</li>
+              <li>There should be a sampling adequacy. Sample size must be sufficiently large for PCA to work properly.</li>
+              <li>There should be no significant outliers. PCA groups the variables into PCs based on variance. Hence, a large outlier will have influence on the PCA results.</li>
+              </ul>
+              <p><b>3.2 Result and interpretation</b></p>
+              <p>There are multiple methods to decide number of principle components to keep. We shall proceed with two of them. For the purpose of this project, the threshold is 80% variance. According to the results, method 1 suggests us to keep the first 13 principle components.&nbsp;</p>
+              <p>The 12th eigenvalue is 1.08, and the 13th eigenvalue is 0.86. According to the results, the average value is 1, which suggests we shall keep the first 12 principle components (More detail about variance explained, see figure 3.1 in appendix).</p>
+              <p>Since the two methods show different results, it is up to the researchers to decide the proper number of PCs to keep based on the 2 methods. Notice that 12 PCs explained about 79.84% of the variance, while 13 PCs explained 82.01%. This is not a significantly huge increase in % variance explained, and 79.94% is fairly close to the 80% threshold. Due to the reasons mentioned above, the first 12 PCs shall be kept.</p>
+              <p>As a result of the PCA method, 12 PCs are received as an output. They may be used in the regression procedure in part 2. The complete list of coefficients in the 12 PCs is attached as 'PCA.xlsx'. In the appendix, a snippet of the coefficients for PC1 is shown in graphical view as an example.&nbsp;</p>
+              <p>&nbsp;</p>
+              <p><b>3.3 Summary</b></p>
+              <p>Method 1 is to decide number of components to keep based on some determined threshold. This threshold shall limit the possibility of keeping too many principle components, while ensuring the PCs explained a certain amount of variance.</p>
+              <p>Method 2 is to drop PCs that are under the average eigenvalue. Since our data is standardized, so the average eigenvalue is 1, we can just choose PCs than whose eigenvalue is larger than 1.</p>
+              <p>As a result of the PCA method, 12 PCs are received as an output. They may be used in the regression procedure in part 4. The complete list of coefficients in the 12 PCs is attached as 'PCA.xlsx'.</p>
+              <p>&nbsp;</p>
+              <p><b>4.Multivariate regression</b></p>
+              <p><b>4.1 Objective and method introduction</b></p>
+              <p><strong>4.1.1 Objective</strong></p>
+              <p>In this section, we will use multivariate regression method to determine which variables are linearly related with GDP and Urban population growth rate.</p>
+              <p><strong>4.1.2 Method introduction</strong></p>
+              <p>Multivariate Regression&nbsp;is a method used to measure the degree at which more than one independent&nbsp;<a href="https://brilliant.org/wiki/function-terminology/">variable</a>&nbsp;(predictors) and more than one dependent variable (responses), are&nbsp;<a href="https://brilliant.org/wiki/forms-of-linear-equations/">linearly</a>&nbsp;related. By using this method, we want to know which variables are most linearly related with GDP and Urban population growth rate. For example, we want to determine which variables increase, the GDP and Urban population growth rate will also increase.</p>
+              <p><strong>4.1.3 Assumption</strong></p>
+              <ul>
+              <li>E(<strong>Y</strong>) = <strong>XB</strong>.</li>
+              <li>Cov (yi) = 0 for all i = 1,2,3, n.</li>
+              <li>Cov (yi; yj) = 0 for all i 6= j.</li>
+              </ul>
+              <p>First, means of response variables are equal to linear formula between predictive variables and parameter. Second, response variables <strong>Y</strong> has correlated columns but uncorrelated rows.</p>
+              <p><b>4.2 Result and interpretation</b></p>
+              <p>As we can see from the Table4.2(see appendix), the top 4 variables with the highest coefficient values relate GDP are x19(GNI), X20(high &ndash;technology exports), x25(Land area) and X35(Population amount). Respectively, these four variables&rsquo; coefficient rate related to GDP are 0.286, 0.274, 0.201 and 0.175. Thus, 1unit growth in gross national income, the GDP will increase in 0.286. And, 1 unit increase in high-technology exports, the GDP will increase in 0.274. Also, the GDP will increase in 0.201, if there is 1 unit increase in land area. Last but not least, if the total population increase in 1 unit, the GDP will increase in 0.175.</p>
+              <p>When related to the urban population growth rate, the top 4 variables with the highest absolute coefficient values are X7 (death rate), X14(forest area), X24(labor force partition rate), and X34(population growth rate). Respectively, these four variables&rsquo; coefficient values are -.1998, -.1523, 0.1218, 0.2598. Thus, 1 unit increase in the death rate, the urban population growth rate will decrease by 0.1998. And, 1 unit increase in the forest area, the urban population growth rate will decrease in 0.1523. Also, the urban population growth rate will increase by 0.1218, if there is 1 unit increase in the labor force partition rate. Last but not least, if the population growth rate increases in 1 unit, the urban population growth rate will increase in 0.2598.</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;</p>
+              <p><b>4.3 Summary</b></p>
+              <p>Based on the analysis above, as the governors, if they want to increase the GDP, they may put more efforts in increasing the gross national income, high-technology exports, and total population amount. Besides, if the labor force partition rate and the population increasing rate are increasing, the governors may anticipate that the urban population growth rate will also increase so that to get prepared for the increasing urban population.</p>
+              <p>&nbsp;</p>
+              <p><b></b>5.Cluster</p>
+              <p><b>5.1 Objective and method introduction</b></p>
+              <p><strong>5.1.1 Objective</strong></p>
+              <p>The goal for cluster analysis is to search for patterns in this data set by grouping observations into clusters.&nbsp; In our case, we would like to see if there is any pattern between all the countries with 41features.&nbsp;</p>
+              <p><strong>5.1.2 Method introduction</strong></p>
+              <p>In cluster analysis, the decision of merging two clusters is taken on the base of closeness of these clusters. There are multiple ways to measure the distance for deciding the closeness of two clusters:</p>
+              <ul>
+              <li>Euclidean distance: <em>d </em>(<strong>x</strong>, <strong>y</strong>) = .</li>
+              <li>Mahalanobis distance: <em>d</em> (<strong>x</strong>, <strong>y</strong>) = , where <strong>S</strong> is the sample covariance</li>
+              <li>Minkowski distance: <em>d</em> (<strong>x</strong>, <strong>y</strong>) =.</li>
+              </ul>
+              <p>Two common methods of cluster analysis:&nbsp;&nbsp;</p>
+              <p><strong>Hierarchical clustering</strong></p>
+              <p>Within this approach to cluster analysis there are numbers of different methods used to determine which clusters should be joined at each stage. The main methods are summarized below:</p>
+              <ul>
+              <li>Single linkage method (Nearest neighbor method)</li>
+              <li>Average linkage method</li>
+              <li>Complete linkage method (Farthest neighbor)</li>
+              <li>Centroid method</li>
+              </ul>
+              <p>The single linkage method is relatively simple, but it is sensitive to errors in distances between observations. The complete linkage method tends to produce compact clusters of similar size,&nbsp; but does not take account of cluster structure. It is quite sensitive to outlier. Both Average link method and Centroid method are fairly robust.</p>
+              <p><strong>K-means clustering method</strong></p>
+              <p>In this method, the desired number of clusters is specified in advance and the &rsquo;best&rsquo; solution is chosen. In general, it follows those five as follows:</p>
+              <ul>
+              <li>Choose initial cluster centers (essentially this is a set of observations that are far apart &mdash; each subject forms a cluster of one and its center is the value of the variables for that subject).</li>
+              <li>Assign each subject to its &rsquo;nearest&rsquo; cluster, defined in terms of the distance to the centroid.</li>
+              <li>Find the centroids of the clusters that have been formed</li>
+              <li>Re-calculate the distance from each subject to each centroid and move observations that are not in the cluster that they are closest to.</li>
+              <li>Continue until the centroids remain relatively stable.</li>
+              </ul>
+              <p><strong>5.1.3 Limitations</strong></p>
+              <p>Cluster analysis does not make any distinction between dependent and independent variables, which is unlike Factor analysis. Therefore, the clusters formed can be very dependent on the variables included.</p>
+              <p>&nbsp;</p>
+              <p><b>5.2 Result and interpretation</b></p>
+              <p><strong>5.2.1 Hierarchical clustering to Determine how many clusters</strong></p>
+              <p>We use the Hierarchical clustering (average link method) approach initially to determine how many clusters there are in the data. We used two methods to choose g.</p>
+              <p><strong>Method 1:</strong> select g clusters from the dendrogram by cutting across the branches at a given level of the distance measure used by one of the axes.</p>
+              <p>Based on the SAS output, it indicates the largest change in levels occurs in going from 7 clusters to 8 cluster. The change in root squared distance between the 7-cluster solution and the 8-cluster solution is 2.103. The difference between the 8-cluster solution and the 9-cluster solution is 0.294. Therefore, we chose 7 clusters. (Figure 5.1 in appendix)</p>
+              <p><strong>Method 2</strong>:</p>
+              <p>Given k=1.25, = 2.807+3.451*2.75=12.297. a<sub>6</sub>=12.735&gt; 12.297and a<sub>7</sub>&lt;12.297, so we choose 6 clusters.</p>
+              <p>Based on those two methods discussed above, the initial clusters can be 7 or 6.</p>
+              <p><strong>5.2.2 Conduct K-means clustering</strong></p>
+              <p>For K-means clustering, we did both random 6 observations and first 7 observations. The idea is to see which approach would give us a better and more reliable clustering.</p>
+              <p><strong>Random 6 observations (Figure 5.2 in appendix)</strong></p>
+              <p>As the cluster summary table given by SAS, we can see cluster 3 has the largest number of countries, which includes 37 countries, while cluster 2 has the least number of countries, which only includes 2 countries. As we can see from the figure 5.2, those two countries are China and United States. Based on the plots of discriminant functions, we can see all the countries are well divided into two groups instead of six groups. Additionally, only cluster 4 and cluster 5 are sufficiently separated from other clusters.</p>
+              <p><strong>First 7 observations (Figure 5.3 and 5.4 in appendix)</strong></p>
+              <p>As the cluster summary table given by SAS, we can see cluster 5 has the largest number of countries, which includes 41 countries, while cluster 2 has the least number of countries, which only includes 2 countries. As we can see from the figure 5.4, those two countries are China and India. Based on the plots of discriminant functions, we can see all the countries are well divided into four groups instead of six groups. Additionally, we can see the first 7 observation method gives us a better clustering result. As we can see from the plot below, cluster 4, cluster 6 and cluster 2 are well separated from other clusters. Within each group, all the data are more compacted.</p>
+              <p><b>5.3 Summary</b></p>
+              <p>Let us focus on the more compacted outcome which is shown in figure 5.4. There are two clusters that just has few countries, one cluster has China and India who are two largest developed countries, having the largest number of population in the world, the other cluster has Russian, the USA, Canada, Brazil and Australia, most of this cluster are developed countries that have generally more advanced post-industrial economies, meaning the service sector provides more wealth than the industrial sector. That outcomes are fairly accord with the real-world&rsquo;s common sense, which means our cluster is meaningful, to some degree.</p>
+              <p>&nbsp;</p>
+              <p><b>6.FA and ranking</b></p>
+              <p><b>6.1 Objective and method introduction</b></p>
+              <p><strong>6.1.1 Objective</strong></p>
+              <p>We are planning to use factor analysis method to get main factors of all 41 variables to score each factor, and then apply weighted eigenvalue with each factor after rotation to come with a total score of country, so we can do ranking and interpretation base on ranking in the end.</p>
+              <p><strong>6.1.2 Method introduction</strong></p>
+              <p>The factors are underlying constructs or latent variables that &ldquo;generate&rdquo; the y&rsquo;s. Like the original variables, the factors vary from individual to individual; but unlike the variables, the factors cannot be measured or observed. In our report, we used principal components method to get the factors. factor scores, f&circ;i = ( f&circ;i1, f&circ;i2, . . . , f&circ;im)", i = 1, 2, . . . , n, which are defined as estimates of the underlying factor values for each observation. There are two potential uses for such scores: (1) the behavior of the observations in terms of the factors may be of interest and (2) we may wish to use the factor scores as input to another analysis, such as MANOVA.</p>
+              <p><strong>6.1.3 Limitation</strong></p>
+              <ul>
+              <li>Its usefulness depends on the researchers' ability to develop a complete and accurate set of product attributes - If important attributes are missed the value of the procedure is reduced accordingly.</li>
+              <li>Naming of the factors can be difficult - multiple attributes can be highly correlated with no apparent reason.</li>
+              <li>If the observed variables are completely unrelated, factor analysis is unable to produce a meaningful pattern</li>
+              </ul>
+              <p><b>6.2 Result and interpretation</b></p>
+              <p><strong>6.2.1 FA</strong></p>
+              <p>After choosing factors by using PCA method, we get the same number of factors as the number of PCs that we got before, which is 12, and each factor is a combination of all 41 variables, coefficient in front of each variable mean how much it contributes to factor . Figure 6.1 show us the variance that explained by 12 factors after rotation.</p>
+              <p>Since we used PCA method to choose our factors, there is no different with the PCs that we picked before, see details on coefficient, please refer to Table 6.2 in the appendix.</p>
+              <p><strong>6.2.2 Score</strong></p>
+              <p>We got each factor&rsquo;s score of a country when we multiply one row with rotated factor pattern matrix (Figure 6.2 in appendix). Based on every factor of every country has score, we multiply each factor score with their eigenvalue to get weighted total score of every country.</p>
+              <p>We ranked all country based on their total score and table 6.2 show us the top 6 countries that have the highest score. From 1 to 6 are Luxembourg, China, Qatar, Bahrain, Iceland, United States. (Full table see table 6.3 in appendix)</p>
+              <p>&nbsp;</p>
+              <p><b>6.3 Summary</b></p>
+              <p>We are surprised that the top one country based on our scoring will be Luxembourg, and we tried to find the reason. We focus on first five factors since their eigenvalue are relative larger than the others. We found that for Luxembourg, scores of factor1 and factor4 tend to be big, which are 1.987 and 4.642, we then referred to the coefficients of these two factors.</p>
+              <p><strong>For factor1, top 5 variables are:</strong></p>
+              <p>X43(+, urban population%)</p>
+              <p>X36(-, rural population%)</p>
+              <p>X9(+, employment in service%)</p>
+              <p>X21(+, individual using internet%)</p>
+              <p>X26(+, life expectancy at birth).</p>
+              <p>&nbsp;</p>
+              <p><strong>For factor4, top 4 variables are:</strong></p>
+              <p>X41(+, trade (% of GDP))</p>
+              <p>X42(+, trade in services (% of GDP))</p>
+              <p>X33(+, population density)</p>
+              <p>X11(+, exports of goods and services)</p>
+              <p>Factor1 is more concentrated on people daily life and the quality of people, Factor4 is more concentrated on population and trade in services. The outcome means the reason why Luxembourg will be the top one in this analyze is that the people who live in Luxembourg has a better life than those in other countries, and have more percentage of trade in service compared to their GDP. More about factors meaning and ranking will be on report conclusion.</p>
+              <p>&nbsp;</p>
+              <p><b>7.Conclusion</b></p>
+              <p>The criterions that determine a country is developed or not are the country has high GDP per capita, level of industrialization, human development index, and indices for life expectancy and education, etc.<a href="#_ftn1" name="_ftnref1">[1]</a> So, we did PCA first to determine 12 PCs should be retained to explain most information of data, then after dimensionality was reduced, GDP growth rate and urban population growth rate were chose to be response values to fit the multivariate multiple PCA regression. Criterion in economic can be covered by GDP growth rate, and the urban-population growth rate account for other criterions since index of human development, life expectancy and education should be higher in urban area than rural area. We found that besides the GNI, high-tech export did a large impact on GDP growth rate and top variables to explain urban population growth rate are death rate, forest area and labor force. After clustering, we also found the patterns are related to population and economic area than divide countries into several parts. Finally, we ranked all countries according to their total score by using factor analysis which score 12 factors&rsquo;. The first four factors are mainly focus on human living quality, economic environment, index of population and trade in services.</p>
+              <p>Our result indicates that if a country gets higher score, people in that country have a better living environment, most percentage of total population are living in urban area, growing economic and advanced service industry.</p>
+              <p>&nbsp;</p>
+              <p><b>8.Reference</b></p>
+              <p>1.<a href="https://en.wikipedia.org/wiki/Developed_country">https://en.wikipedia.org/wiki/Developed_country</a></p>
+              <ol start="2">
+              <li>Rencher, Alvin C., and William F. Christensen. Methods of Multivariate Analysis. Wiley, 2012.</li>
+              </ol>
+              <p>&nbsp;</p>
+              <p><a href="#_ftnref1" name="_ftn1">[1]</a> <a href="https://en.wikipedia.org/wiki/Developed_country">https://en.wikipedia.org/wiki/Developed_country</a></p>
+              <p>&nbsp;</p>
+            </article> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer-container text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p>Detail code please check out my github repo. <a href="https://github.com/Yangxiao2498/country_great" title="Country scores"><u>Click here</u></a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<footer class="footer-container text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p>Website created with <a href="http://www.mashup-template.com/" title="Create website with free html template">Mashup Template</a>/<a href="https://www.unsplash.com/" title="Beautiful Free Images">Unsplash</a>,&#9749; and &#128150;</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+     navActivePage();
+  });
+</script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-XXXXX-X', 'auto');
+  ga('send', 'pageview');
+</script>
+
+--> <script type="text/javascript" src="./main.70a66962.js"></script></body>
+
+</html>
